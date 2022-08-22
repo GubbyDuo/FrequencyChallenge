@@ -4,13 +4,13 @@ import java.util.*;
 
 public class Utils {
 
-	public static <T> ArrayList<Frequency<T>> orderByFrequency(ArrayList<T> myArr){
-		ArrayList<Frequency<T>> newArr = new ArrayList<Frequency<T>>();
+	public static <T> ArrayList<T> orderByFrequency(ArrayList<T> myArr){
+		Map<T, Integer> hm = new HashMap<T, Integer>();
 		while(myArr.size() > 0) {
-			long letterCount = myArr.stream()
+			int letterCount = (int) myArr.stream()
 			.filter(letter -> letter == myArr.get(0))
 			.count();
-			newArr.add(new Frequency<T>(myArr.get(0), letterCount));
+			hm.put(myArr.get(0), letterCount);
 			T toRemove = myArr.get(0);
 			Iterator<T> itr = myArr.iterator();
 			
@@ -20,13 +20,18 @@ public class Utils {
 				}
 			}
 		}
-		//sort frequency class in order by frequency
-		System.out.println(newArr);
-		Collections.sort((ArrayList) myArr, Comparator.comparing(Frequency<T>::getFrequency));
-		return newArr;
-		
-		
-		
+		ArrayList<Map.Entry<T, Integer>> newArr = new ArrayList<Map.Entry<T, Integer>>();
+		for(Map.Entry<T, Integer> entry : hm.entrySet()) {
+			newArr.add(entry);
+		}
+		Collections.sort(newArr, (i1, i2) -> i1.getValue().compareTo(i2.getValue()));		
+		ArrayList<T> finalArr = new ArrayList<T>();
+		for(Map.Entry<T, Integer> entry : newArr) {
+			finalArr.add(entry.getKey());
+		}
+		return finalArr;
+	
 	}
+	
 
 }

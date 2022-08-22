@@ -1,5 +1,7 @@
 package frequencyChallenge;
 
+import java.util.ArrayList;
+
 public class Frequency<T> implements Comparable<Frequency<T>> {
 	private T thing;
 	private long frequency;
@@ -22,6 +24,14 @@ public class Frequency<T> implements Comparable<Frequency<T>> {
 	public String toString() {
 		return this.thing + " - " + this.frequency;
 	}
+	
+	
+	
+//	public static Comparator<Frequency> FrequencyComparator = new Comparator<Frequency>() {
+//		public int compare(Frequency f1, Frequency f2) {
+//			return (int) (f1.getFrequency() - f2.getFrequency());
+//		}
+//	};
 
 	@Override
 	public int compareTo(Frequency<T> frequency) {

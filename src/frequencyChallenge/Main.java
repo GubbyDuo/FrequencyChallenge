@@ -16,6 +16,8 @@ public class Main {
 		stringArr.add("four");
 		stringArr.add("four");
 		stringArr.add("four");
+		stringArr.add("three");
+		
 		
 		System.out.println(Utils.orderByFrequency(stringArr));
 	}
